@@ -1,0 +1,24 @@
+{
+  "name": "mapper",
+  "version": "1.0.0",
+  "description": "map objects to other objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techleadits/mapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/techleadits/mapper/issues"
+  },
+  "homepage": "https://github.com/techleadits/mapper#readme",
+  "dependencies": {
+    "clone": "^2.1.2",
+    "moment": "^2.24.0",
+    "object-path": "^0.11.4"
+  }
+}
