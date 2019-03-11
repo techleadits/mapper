@@ -72,9 +72,20 @@ function _paths(saida, entrada, paths) {
         _loop_1(id);
     }
 }
+function isFile(obj) {
+    try {
+        return obj instanceof window.Blob || obj instanceof window['File'];
+    }
+    catch (_a) {
+        return false;
+    }
+}
 function _object(saida, entrada, force) {
     if (force === void 0) { force = true; }
-    if (saida instanceof File) {
+    if (entrada == null || entrada == undefined) {
+        return saida;
+    }
+    if (isFile(saida)) {
         return entrada;
     }
     else if (Array.isArray(saida) && saida !== null) {
@@ -91,7 +102,7 @@ function _object(saida, entrada, force) {
     else if (entrada instanceof Date && saida instanceof Date) {
         return entrada;
     }
-    else if (typeof saida === 'object' && saida !== null) {
+    else if (typeof saida === 'object' && saida !== null && typeof entrada === 'object' && entrada !== null) {
         var newSaida = {};
         for (var id in saida) {
             if (saida.hasOwnProperty(id)) {
@@ -116,9 +127,14 @@ function _copyIfNull(saida, entrada, force) {
     if (typeof entrada === 'object' && !Array.isArray(entrada)) {
         for (var id in entrada) {
             if (entrada.hasOwnProperty(id)) {
-                var ret = _copyIfNull(saida[id], entrada[id], force);
-                if (ret) {
-                    saida[id] = ret;
+                if (saida == undefined) {
+                    saida = entrada;
+                }
+                else {
+                    var ret = _copyIfNull(saida[id], entrada[id], force);
+                    if (ret) {
+                        saida[id] = ret;
+                    }
                 }
             }
         }

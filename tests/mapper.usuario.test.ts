@@ -3,9 +3,9 @@ import {mapper} from '../src/index';
 
 import * as fs from "fs-extra";
 
-const entrada = fs.readJSON("./tests/1/entrada.json");
-const saida =  fs.readJSON("./tests/1/saida.json");
-
+const baseFolder='./tests/usuario';
+const entrada = fs.readJSON(`${baseFolder}/entrada.json`);
+const saida =  fs.readJSON(`${baseFolder}/saida.json`);
 
 describe('mapper', function() {
     it('map with inner objects and arrays', function(done) {
@@ -16,7 +16,7 @@ describe('mapper', function() {
                 expect(saida).exist;
                 done();
 
-                fs.writeJSON('./tests/1/result/saida-entrada.json',saida,{spaces:2});
+                fs.writeJSON(`${baseFolder}/result/saida-entrada.json`,saida,{spaces:2});
                 
             }catch(err){
                 done(err);
@@ -34,7 +34,7 @@ describe('mapper', function() {
                 expect(saida).exist;
                 done();
 
-                fs.writeJSON('./tests/1/result/entrada-saida.json',saida,{spaces:2});
+                fs.writeJSON(`${baseFolder}/result/entrada-saida.json`,saida,{spaces:2});
                 
             }catch(err){
                 done(err);
