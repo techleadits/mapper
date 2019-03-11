@@ -1,4 +1,6 @@
-import * as objectPath from 'object-path';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var objectPath = require("object-path");
 var Mapper = /** @class */ (function () {
     function Mapper(_specialMappings) {
         this._specialMappings = _specialMappings;
@@ -15,8 +17,8 @@ var Mapper = /** @class */ (function () {
     };
     return Mapper;
 }());
-export { Mapper };
-export function classMap(entrada, saida, force) {
+exports.Mapper = Mapper;
+function classMap(entrada, saida, force) {
     if (force === void 0) { force = true; }
     var newSaida = {};
     for (var id in saida) {
@@ -25,14 +27,16 @@ export function classMap(entrada, saida, force) {
         }
     }
 }
+exports.classMap = classMap;
 /**
  * @deprecated use map instead
  */
-export function mapper(entrada, saida, paths) {
+function mapper(entrada, saida, paths) {
     if (paths === void 0) { paths = null; }
     return map(entrada, saida, paths);
 }
-export function map(entrada, saida, paths) {
+exports.mapper = mapper;
+function map(entrada, saida, paths) {
     if (saida === void 0) { saida = {}; }
     if (paths === void 0) { paths = {}; }
     if (!entrada) {
@@ -41,6 +45,7 @@ export function map(entrada, saida, paths) {
     // no formato atual, saida e um clone completo do objeto passado por referencia. Não alteraremos o mesmo
     return _pathMap(entrada, saida, paths);
 }
+exports.map = map;
 function isPrimitive(test) {
     return (test !== Object(test));
 }
@@ -69,10 +74,13 @@ function _paths(saida, entrada, paths) {
 }
 function _object(saida, entrada, force) {
     if (force === void 0) { force = true; }
-    if (entrada !== null && Array.isArray(entrada)) {
+    if (saida instanceof File) {
+        return entrada;
+    }
+    else if (Array.isArray(saida) && saida !== null) {
         var newSaida = [];
-        for (var id in entrada) {
-            if (entrada.hasOwnProperty(id)) {
+        for (var id in saida) {
+            if (saida.hasOwnProperty(id)) {
                 if (entrada[id]) {
                     newSaida.push(_object(saida[id], entrada[id], force));
                 }

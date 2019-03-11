@@ -1,12 +1,13 @@
 {
   "name": "@techleadits/mapper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "map objects to other objects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "testWithCoverage": "nyc -r lcov -e .ts -x \"*.test.ts\" mocha -r ts-node/register tests/**/*.test.ts && nyc report"
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,22 @@
   "homepage": "https://github.com/techleadits/mapper#readme",
   "dependencies": {
     "clone": "^2.1.2",
+    "fs-extra": "^7.0.1",
     "moment": "^2.24.0",
     "object-path": "^0.11.4"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
     "@types/clone": "^0.1.30",
+    "@types/fs-extra": "^5.0.5",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.11.0",
     "@types/object-path": "^0.11.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "mocha-jsdom": "^2.0.0",
+    "nyc": "^13.3.0",
+    "ts-node": "^8.0.3",
     "typescript": "^3.3.3333"
   }
 }

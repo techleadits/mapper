@@ -69,11 +69,25 @@ function _paths(saida: any, entrada: any, paths: SpecialMapping) {
   }
 }
 
+function isFile(obj:any){
+  try{
+    return obj instanceof window.Blob || obj instanceof window['File'];
+  }catch{
+    return false;
+  }
+}
+
 function _object(saida: any, entrada: any, force: boolean = true): any {
-  if (entrada !== null && Array.isArray(entrada)  ) {
+  if(entrada == null || entrada == undefined){
+    return saida;
+  }
+
+  if (isFile(saida)) {
+   return entrada;
+  } else if (Array.isArray(saida) && saida !== null) {
     const newSaida = [];
-    for (const id in entrada) {
-      if (entrada.hasOwnProperty(id)) {
+    for (const id in saida) {
+      if (saida.hasOwnProperty(id)) {
         if (entrada[id]) {
           newSaida.push(_object(saida[id], entrada[id], force));
         }
@@ -82,8 +96,8 @@ function _object(saida: any, entrada: any, force: boolean = true): any {
     return newSaida;
   } else if (entrada instanceof Date && saida instanceof Date) {
     return entrada;
-  } else if (typeof saida === 'object' && saida !== null) {
-    let newSaida:any = {};
+  } else if ( typeof saida === 'object' && saida !== null && typeof entrada === 'object' && entrada !== null) {
+    const newSaida = {};
     for (const id in saida) {
       if (saida.hasOwnProperty(id)) {
         newSaida[id] = _object(saida[id], entrada[id], force);
@@ -106,9 +120,13 @@ function _copyIfNull(saida: any, entrada: any, force: boolean = true): any {
   if (typeof entrada === 'object' && !Array.isArray(entrada)) {
     for (const id in entrada) {
       if (entrada.hasOwnProperty(id)) {
-        const ret = _copyIfNull(saida[id], entrada[id], force);
-        if (ret) {
-          saida[id] = ret;
+        if(saida == undefined){
+          saida = entrada;
+        }else{
+          const ret = _copyIfNull(saida[id], entrada[id], force);
+          if (ret) {
+            saida[id] = ret;
+          }
         }
       }
     }
