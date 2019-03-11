@@ -1,8 +1,4 @@
 import * as objectPath from 'object-path';
-import * as clone from 'clone';
-import {HttpParams} from '@angular/common/http';
-import * as moment from 'moment';
-import _date = moment.unitOfTime._date;
 
 interface SpecialMapping {
   [key: string]: string | string[];
@@ -46,41 +42,8 @@ export function map(entrada: any, saida: any = {}, paths: SpecialMapping = {}) {
   }
 
   // no formato atual, saida e um clone completo do objeto passado por referencia. Não alteraremos o mesmo
-  let newSaida;
-  if (!saida) {
-    newSaida = {};
-  } else {
-    newSaida = clone(saida);
-  }
   return _pathMap(entrada, saida, paths);
 }
-
-export function listOfParameters(obj: any): HttpParams {
-  let parameters = new HttpParams();
-
-  function listOfParameters(obj: any, preId: any) {
-
-    if (obj && typeof obj == 'object') {
-      for (var keyid in Object.keys(obj)) {
-        let id = Object.keys(obj)[keyid];
-        if (obj[id] != null && obj[id] != undefined && typeof obj[id] != 'object') {
-          parameters = parameters.append(preId + id, obj[id]);
-        } else if (Array.isArray(obj[id])) {
-          obj[id].forEach((item: any) => {
-            listOfParameters(item, preId + id + '.');
-          });
-        } else {
-          listOfParameters(obj[id], preId + id + '.');
-        }
-      }
-    }
-
-    return parameters;
-  }
-
-  return listOfParameters(obj, '');
-}
-
 
 function isPrimitive(test: any) {
   return (test !== Object(test));
@@ -107,7 +70,7 @@ function _paths(saida: any, entrada: any, paths: SpecialMapping) {
 }
 
 function _object(saida: any, entrada: any, force: boolean = true): any {
-  if (Array.isArray(saida) && saida !== null) {
+  if (entrada !== null && Array.isArray(entrada)  ) {
     const newSaida = [];
     for (const id in entrada) {
       if (entrada.hasOwnProperty(id)) {
@@ -120,7 +83,7 @@ function _object(saida: any, entrada: any, force: boolean = true): any {
   } else if (entrada instanceof Date && saida instanceof Date) {
     return entrada;
   } else if (typeof saida === 'object' && saida !== null) {
-    const newSaida = {};
+    let newSaida:any = {};
     for (const id in saida) {
       if (saida.hasOwnProperty(id)) {
         newSaida[id] = _object(saida[id], entrada[id], force);
