@@ -137,8 +137,8 @@ function _copyIfNull(saida: any, entrada: any, force: boolean = true): any {
 
 function _pathMap(entrada: any, saida: any = {}, paths: SpecialMapping = {}) {
 
-  const newEntrada = _object(entrada, saida, true);
-  _copyIfNull(newEntrada, saida, true);
+  const newEntrada = _object(saida, entrada, true);
+  _copyIfNull(saida, newEntrada, true);
   _paths(saida, newEntrada, paths);
   return newEntrada;
 }

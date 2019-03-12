@@ -1,34 +1,269 @@
 {
+  "id": 252,
   "login": "00749113251",
   "pessoa": {
     "id": 252,
     "nome": "Jose Aleixo Araujo Porpino Filho",
     "cpf": "00749113251",
-    "numeroPassaporte": null,
-    "vencimentoPassaporte": null,
-    "cargo": {
-      "id": 22,
-      "nome": "Diretor"
-    },
-    "setor": {
-      "id": 13,
-      "nome": "setor 1",
-      "sigla": "s1",
-      "cargos": []
-    },
-    "tipoConta": null,
-    "numeroBanco": null,
-    "numeroAgencia": null,
-    "numeroContaCorrente": null,
-    "digito": null,
-    "perfil": null,
     "ativo": true
   },
-  "tipoConta": null,
-  "numeroBanco": null,
-  "numeroAgencia": null,
-  "numeroContaCorrente": null,
-  "digito": null,
-  "id": 252,
+  "perfil": {
+    "id": 102,
+    "nome": "Administrador",
+    "acoes": [
+      {
+        "id": 21,
+        "nome": "cadastrar cargo"
+      },
+      {
+        "id": 10,
+        "nome": "editar ação"
+      },
+      {
+        "id": 35,
+        "nome": "excluir pessoa"
+      },
+      {
+        "id": 51,
+        "nome": "cadastrar motivoviagem"
+      },
+      {
+        "id": 6,
+        "nome": "inativar perfil"
+      },
+      {
+        "id": 25,
+        "nome": "listar veiculo"
+      },
+      {
+        "id": 30,
+        "nome": "inativar veiculo"
+      },
+      {
+        "id": 24,
+        "nome": "inativar cargo"
+      },
+      {
+        "id": 13,
+        "nome": "listar usuário"
+      },
+      {
+        "id": 12,
+        "nome": "inativar ação"
+      },
+      {
+        "id": 26,
+        "nome": "detalhar veiculo"
+      },
+      {
+        "id": 18,
+        "nome": "inativar usuário"
+      },
+      {
+        "id": 32,
+        "nome": "detalhar pessoa"
+      },
+      {
+        "id": 34,
+        "nome": "editar pessoa"
+      },
+      {
+        "id": 53,
+        "nome": "excluir motivoviagem"
+      },
+      {
+        "id": 1,
+        "nome": "listar perfil"
+      },
+      {
+        "id": 55,
+        "nome": "listar feriado"
+      },
+      {
+        "id": 41,
+        "nome": "excluir setor"
+      },
+      {
+        "id": 45,
+        "nome": "cadastrar pedido"
+      },
+      {
+        "id": 57,
+        "nome": "cadastrar feriado"
+      },
+      {
+        "id": 38,
+        "nome": "detalhar setor"
+      },
+      {
+        "id": 27,
+        "nome": "cadastrar veiculo"
+      },
+      {
+        "id": 33,
+        "nome": "cadastrar pessoa"
+      },
+      {
+        "id": 17,
+        "nome": "excluir usuário"
+      },
+      {
+        "id": 20,
+        "nome": "detalhar cargo"
+      },
+      {
+        "id": 62,
+        "nome": "editar fluxo"
+      },
+      {
+        "id": 47,
+        "nome": "excluir pedido"
+      },
+      {
+        "id": 28,
+        "nome": "editar veiculo"
+      },
+      {
+        "id": 63,
+        "nome": "detalhar fluxo"
+      },
+      {
+        "id": 52,
+        "nome": "editar motivoviagem"
+      },
+      {
+        "id": 50,
+        "nome": "detalhar Motivo Viagem"
+      },
+      {
+        "id": 61,
+        "nome": "listar fluxo"
+      },
+      {
+        "id": 59,
+        "nome": "excluir feriado"
+      },
+      {
+        "id": 36,
+        "nome": "inativar pessoa"
+      },
+      {
+        "id": 5,
+        "nome": "excluir perfil"
+      },
+      {
+        "id": 43,
+        "nome": "listar pedido"
+      },
+      {
+        "id": 23,
+        "nome": "excluir cargo"
+      },
+      {
+        "id": 31,
+        "nome": "listar pessoa"
+      },
+      {
+        "id": 2,
+        "nome": "detalhar perfil"
+      },
+      {
+        "id": 4,
+        "nome": "editar perfíl"
+      },
+      {
+        "id": 49,
+        "nome": "listar Motivo Viagem"
+      },
+      {
+        "id": 22,
+        "nome": "editar cargo"
+      },
+      {
+        "id": 7,
+        "nome": "listar ação"
+      },
+      {
+        "id": 29,
+        "nome": "excluir veiculo"
+      },
+      {
+        "id": 37,
+        "nome": "listar setor"
+      },
+      {
+        "id": 8,
+        "nome": "detalhar ação"
+      },
+      {
+        "id": 9,
+        "nome": "cadastrar ação"
+      },
+      {
+        "id": 58,
+        "nome": "editar feriado"
+      },
+      {
+        "id": 44,
+        "nome": "detalhar pedido"
+      },
+      {
+        "id": 15,
+        "nome": "cadastrar usuário"
+      },
+      {
+        "id": 11,
+        "nome": "excluir ação"
+      },
+      {
+        "id": 14,
+        "nome": "detalhar usuário"
+      },
+      {
+        "id": 54,
+        "nome": "inativar motivoviagem"
+      },
+      {
+        "id": 60,
+        "nome": "inativar feriado"
+      },
+      {
+        "id": 39,
+        "nome": "cadastrar setor"
+      },
+      {
+        "id": 40,
+        "nome": "editar setor"
+      },
+      {
+        "id": 42,
+        "nome": "inativar setor"
+      },
+      {
+        "id": 19,
+        "nome": "listar cargo"
+      },
+      {
+        "id": 48,
+        "nome": "inativar pedido"
+      },
+      {
+        "id": 56,
+        "nome": "detalhar feriado"
+      },
+      {
+        "id": 3,
+        "nome": "cadastrar perfil"
+      },
+      {
+        "id": 16,
+        "nome": "editar usuário"
+      },
+      {
+        "id": 46,
+        "nome": "editar pedido"
+      }
+    ]
+  },
   "primeiroAcesso": true
 }

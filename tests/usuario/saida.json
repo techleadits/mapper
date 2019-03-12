@@ -1,1 +1,32 @@
-{"login":"00749113251","pessoa":{"id":252,"nome":"Jose Aleixo Araujo Porpino Filho","cpf":"00749113251","numeroPassaporte":null,"vencimentoPassaporte":null,"cargo":{"id":22,"nome":"Diretor"},"setor":{"id":13,"nome":"setor 1","sigla":"s1","cargos":[]},"tipoConta":null,"numeroBanco":null,"numeroAgencia":null,"numeroContaCorrente":null,"digito":null,"perfil":null},"tipoConta":null,"numeroBanco":null,"numeroAgencia":null,"numeroContaCorrente":null,"digito":null,"id":252}
+{
+    "login": "00749113251",
+    "pessoa": {
+      "id": 252,
+      "nome": "Jose Aleixo Araujo Porpino Filho",
+      "cpf": "00749113251",
+      "numeroPassaporte": null,
+      "vencimentoPassaporte": null,
+      "cargo": {
+        "id": 23,
+        "nome": "Técnico"
+      },
+      "setor": {
+        "id": 13,
+        "nome": "setor 1",
+        "sigla": "s1",
+        "cargos": []
+      },
+      "tipoConta": null,
+      "numeroBanco": null,
+      "numeroAgencia": null,
+      "numeroContaCorrente": null,
+      "digito": null,
+      "perfil": null
+    },
+    "tipoConta": null,
+    "numeroBanco": null,
+    "numeroAgencia": null,
+    "numeroContaCorrente": null,
+    "digito": null,
+    "id": 252
+  }
