@@ -1,5 +1,6 @@
 import { expect, assert } from "chai";
 import {mapper} from '../src/index';
+import {genReport} from '../src/report';
 import * as objectPath from 'object-path';
 
 import * as fs from "fs-extra";
@@ -13,7 +14,7 @@ before(done => {
     Promise.all([entradaPromise,saidaPromise]).then((array)=>{
         try{
             entradaSaida = mapper(array[0],array[1]); 
-            fs.writeJSON(`${baseFolder}/result/entrada-saida.json`,entradaSaida,{spaces:2});
+            genReport(baseFolder,'entrada-saida',entradaSaida);
         }catch(err){
             done(err);
         }
