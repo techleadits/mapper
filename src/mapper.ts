@@ -84,13 +84,11 @@ function _object(saida: any, entrada: any, force: boolean = true): any {
 
   if (isFile(saida)) {
    return entrada;
-  } else if (Array.isArray(saida) && saida !== null) {
+  } else if (Array.isArray(saida) && saida !== null && Array.isArray(entrada) && entrada !== null) {
     const newSaida = [];
-    for (const id in saida) {
-      if (saida.hasOwnProperty(id)) {
-        if (entrada[id]) {
-          newSaida.push(_object(saida[id], entrada[id], force));
-        }
+    for (const id in entrada) {
+      if (entrada.hasOwnProperty(id) && entrada[id]) {
+        newSaida.push(_object(saida[id], entrada[id], force));
       }
     }
     return newSaida;

@@ -1,6 +1,6 @@
 {
   "name": "@techleadits/mapper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "map objects to other objects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
