@@ -88,13 +88,11 @@ function _object(saida, entrada, force) {
     if (isFile(saida)) {
         return entrada;
     }
-    else if (Array.isArray(saida) && saida !== null) {
+    else if (Array.isArray(saida) && saida !== null && Array.isArray(entrada) && entrada !== null) {
         var newSaida = [];
-        for (var id in saida) {
-            if (saida.hasOwnProperty(id)) {
-                if (entrada[id]) {
-                    newSaida.push(_object(saida[id], entrada[id], force));
-                }
+        for (var id in entrada) {
+            if (entrada.hasOwnProperty(id) && entrada[id]) {
+                newSaida.push(_object(saida[id], entrada[id], force));
             }
         }
         return newSaida;
@@ -146,8 +144,8 @@ function _copyIfNull(saida, entrada, force) {
 function _pathMap(entrada, saida, paths) {
     if (saida === void 0) { saida = {}; }
     if (paths === void 0) { paths = {}; }
-    var newEntrada = _object(entrada, saida, true);
-    _copyIfNull(newEntrada, saida, true);
+    var newEntrada = _object(saida, entrada, true);
+    _copyIfNull(saida, newEntrada, true);
     _paths(saida, newEntrada, paths);
     return newEntrada;
 }

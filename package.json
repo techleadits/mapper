@@ -1,11 +1,12 @@
 {
   "name": "@techleadits/mapper",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "map objects to other objects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "tscpublish": "tsc & npm publish",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
     "testWithCoverage": "nyc -r lcov -e .ts -x \"*.test.ts\" mocha -r ts-node/register tests/**/*.test.ts && nyc report"
   },
