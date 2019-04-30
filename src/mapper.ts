@@ -77,10 +77,47 @@ function isFile(obj:any){
   }
 }
 
-function _object(saida: any, entrada: any, force: boolean = true): any {
+// não ordenado
+function keyList(...args: any[]): Set<string> {
+  const newArg = new Set<string>()
+  args.forEach(arg =>{
+    if(arg){
+      const keys = Object.keys(arg)
+      keys.forEach(key =>{
+        newArg.add(key);
+      })
+    }
+  })
+  
+  return newArg;
+}
+
+// ordenado
+function objectKeyList(...args: any[]): PathKey {
+  const newArg = {};
+  args.forEach(arg =>{
+    if(arg){}
+    const keys = Object.keys(arg)
+    keys.forEach(key =>{
+      newArg[key] = undefined;
+    })
+  })
+
+  return newArg;
+}
+
+function _object(saida: any, entrada: any, paramList: string[] | Set<string>, force: boolean = true): any {
+  
   if(entrada == null || entrada == undefined){
     return saida;
   }
+
+  if(saida == null || saida == undefined ){
+    return entrada;
+  }
+
+  paramList = keyList(saida,entrada,paramList);
+  
 
   if (isFile(saida)) {
    return entrada;
@@ -88,7 +125,7 @@ function _object(saida: any, entrada: any, force: boolean = true): any {
     const newSaida = [];
     for (const id in entrada) {
       if (entrada.hasOwnProperty(id) && entrada[id]) {
-        newSaida.push(_object(saida[id], entrada[id], force));
+        newSaida.push(_object(saida[id], entrada[id],paramList, force));
       }
     }
     return newSaida;
@@ -96,11 +133,14 @@ function _object(saida: any, entrada: any, force: boolean = true): any {
     return entrada;
   } else if ( typeof saida === 'object' && saida !== null && typeof entrada === 'object' && entrada !== null) {
     const newSaida = {};
-    for (const id in saida) {
-      if (saida.hasOwnProperty(id)) {
-        newSaida[id] = _object(saida[id], entrada[id], force);
-      }
-    }
+    paramList.forEach(id => {
+      newSaida[id] = _object(saida[id], entrada[id],paramList, force);
+    })
+    // for (const id in paramList) {
+    //   if (saida.hasOwnProperty(id)) {
+    //     newSaida[id] = _object(saida[id], entrada[id], force);
+    //   }
+    // }
     return newSaida;
   } else if (isPrimitive(saida) && (!saida || typeof entrada === typeof saida )) {
     return entrada;
@@ -135,8 +175,12 @@ function _copyIfNull(saida: any, entrada: any, force: boolean = true): any {
 
 function _pathMap(entrada: any, saida: any = {}, paths: SpecialMapping = {}) {
 
-  const newEntrada = _object(saida, entrada, true);
+  const newEntrada = _object(saida, entrada,undefined, true);
   _copyIfNull(saida, newEntrada, true);
   _paths(saida, newEntrada, paths);
   return newEntrada;
+}
+
+interface  PathKey{
+  [key: string]: PathKey | string  | undefined
 }

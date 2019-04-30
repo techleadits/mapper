@@ -1,0 +1,9 @@
+{
+    "id":302,
+    "descricao":"desc antiga",
+    "tipo":"tipo antigo",
+    "atualizaColuna":{
+        "id":-1,
+        "desc":"descricao antiga"
+    }
+}
