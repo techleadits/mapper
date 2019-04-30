@@ -18,7 +18,7 @@ var Mapper = /** @class */ (function () {
     return Mapper;
 }());
 exports.Mapper = Mapper;
-function classMap(entrada, saida, force) {
+function classMap(saida, entrada, force) {
     if (force === void 0) { force = true; }
     var newSaida = {};
     for (var id in saida) {
@@ -31,12 +31,12 @@ exports.classMap = classMap;
 /**
  * @deprecated use map instead
  */
-function mapper(entrada, saida, paths) {
+function mapper(saida, entrada, paths) {
     if (paths === void 0) { paths = null; }
     return map(entrada, saida, paths);
 }
 exports.mapper = mapper;
-function map(entrada, saida, paths) {
+function map(saida, entrada, paths) {
     if (saida === void 0) { saida = {}; }
     if (paths === void 0) { paths = {}; }
     if (!entrada) {

@@ -18,7 +18,7 @@ export class Mapper {
 }
 
 
-export function classMap(entrada: any, saida: any, force: boolean = true,) {
+export function classMap(saida: any,entrada: any, force: boolean = true,) {
   const newSaida: any = {};
   for (const id in saida) {
     if (saida.hasOwnProperty(id)) {
@@ -31,12 +31,12 @@ export function classMap(entrada: any, saida: any, force: boolean = true,) {
 /**
  * @deprecated use map instead
  */
-export function mapper(entrada: any, saida: any, paths: any = null) {
+export function mapper(saida: any,entrada: any, paths: any = null) {
   return map(entrada, saida, paths);
 }
 
 
-export function map(entrada: any, saida: any = {}, paths: SpecialMapping = {}) {
+export function map(saida: any = {},entrada: any, paths: SpecialMapping = {}) {
   if (!entrada) {
     return saida;
   }

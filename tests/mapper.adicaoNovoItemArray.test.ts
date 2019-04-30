@@ -1,5 +1,5 @@
 import { expect, assert } from "chai";
-import {mapper} from '../src/index';
+import {mapper, map} from '../src/index';
 import {genReport} from '../src/report';
 import * as objectPath from 'object-path';
 
@@ -11,9 +11,9 @@ const saidaPromise =  fs.readJSON(`${baseFolder}/saida.json`);
 let entrada = undefined ,saida = undefined;
 let entradaSaida = undefined;
 before(done => {
-    Promise.all([entradaPromise,saidaPromise]).then((array)=>{
+    Promise.all([saidaPromise,entradaPromise]).then((array)=>{
         try{
-            entradaSaida = mapper(array[0],array[1]); 
+            entradaSaida = map(array[0],array[1]); 
             genReport(baseFolder,'entrada-saida',entradaSaida);
         }catch(err){
             done(err);
