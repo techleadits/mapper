@@ -129,7 +129,7 @@ function _object(saida, entrada, paramList, force) {
         var newSaida = [];
         for (var id in entrada) {
             if (entrada.hasOwnProperty(id) && entrada[id]) {
-                newSaida.push(_object(saida[id], entrada[id], paramList, force));
+                newSaida.push(_object(saida[id], entrada[id], undefined, force));
             }
         }
         return newSaida;
@@ -140,7 +140,7 @@ function _object(saida, entrada, paramList, force) {
     else if (typeof saida === 'object' && saida !== null && typeof entrada === 'object' && entrada !== null) {
         var newSaida_1 = {};
         paramList.forEach(function (id) {
-            newSaida_1[id] = _object(saida[id], entrada[id], paramList, force);
+            newSaida_1[id] = _object(saida[id], entrada[id], undefined, force);
         });
         // for (const id in paramList) {
         //   if (saida.hasOwnProperty(id)) {
@@ -185,7 +185,7 @@ function _pathMap(entrada, saida, paths) {
     if (saida === void 0) { saida = {}; }
     if (paths === void 0) { paths = {}; }
     var newEntrada = _object(saida, entrada, undefined, true);
-    _copyIfNull(saida, newEntrada, true);
+    _copyIfNull(newEntrada, saida, true);
     _paths(saida, newEntrada, paths);
     return newEntrada;
 }

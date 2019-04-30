@@ -125,7 +125,7 @@ function _object(saida: any, entrada: any, paramList: string[] | Set<string>, fo
     const newSaida = [];
     for (const id in entrada) {
       if (entrada.hasOwnProperty(id) && entrada[id]) {
-        newSaida.push(_object(saida[id], entrada[id],paramList, force));
+        newSaida.push(_object(saida[id], entrada[id],undefined, force));
       }
     }
     return newSaida;
@@ -134,7 +134,7 @@ function _object(saida: any, entrada: any, paramList: string[] | Set<string>, fo
   } else if ( typeof saida === 'object' && saida !== null && typeof entrada === 'object' && entrada !== null) {
     const newSaida = {};
     paramList.forEach(id => {
-      newSaida[id] = _object(saida[id], entrada[id],paramList, force);
+      newSaida[id] = _object(saida[id], entrada[id],undefined, force);
     })
     // for (const id in paramList) {
     //   if (saida.hasOwnProperty(id)) {
@@ -176,7 +176,7 @@ function _copyIfNull(saida: any, entrada: any, force: boolean = true): any {
 function _pathMap(entrada: any, saida: any = {}, paths: SpecialMapping = {}) {
 
   const newEntrada = _object(saida, entrada,undefined, true);
-  _copyIfNull(saida, newEntrada, true);
+  _copyIfNull(newEntrada, saida, true);
   _paths(saida, newEntrada, paths);
   return newEntrada;
 }

@@ -13,6 +13,8 @@ let entradaSaida = undefined;
 before(done => {
     Promise.all([saidaPromise,entradaPromise]).then((array)=>{
         try{
+            saida = array[0];
+            entrada = array[1];
             entradaSaida = map(array[0],array[1]); 
             genReport(baseFolder,'entrada-saida',entradaSaida);
         }catch(err){
@@ -75,4 +77,29 @@ describe('mapper entrada maior que saida: entrada -> saida', function() {
     // it('has atualizaColuna', function() {
     //     expect(objectPath.get(entradaSaida,'id')).to.be.equal(302);
     // })
+}); 
+
+
+
+describe('concistência do objeto de saida', function() {
+    it('deve ser um objeto válido', () => 
+        expect(saida).exist
+    );
+
+    it('deve manter o valor de "id"', () => 
+        expect(objectPath.get(saida,'id')).to.be.equal(302)
+    );
+
+    it('deve maner o valor de "descricao"', () => 
+        expect(objectPath.get(saida,'descricao')).to.be.equal("desc antiga")
+    );
+
+    it('deve manter o valor de "atualizaColuna.desc"', () => 
+        expect(objectPath.get(saida,'atualizaColuna.desc')).to.be.equal("descricao antiga")
+    );
+
+
+    it('deve não possuir a propriedade "informacaoAdicional"', () => 
+        expect(objectPath.get(saida,'informacaoAdicional')).to.not.exist
+    );
 }); 
