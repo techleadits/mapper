@@ -80,11 +80,48 @@ function isFile(obj) {
         return false;
     }
 }
-function _object(saida, entrada, force) {
+// não ordenado
+function keyList() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    var newArg = new Set();
+    args.forEach(function (arg) {
+        if (arg) {
+            var keys = Object.keys(arg);
+            keys.forEach(function (key) {
+                newArg.add(key);
+            });
+        }
+    });
+    return newArg;
+}
+// ordenado
+function objectKeyList() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    var newArg = {};
+    args.forEach(function (arg) {
+        if (arg) { }
+        var keys = Object.keys(arg);
+        keys.forEach(function (key) {
+            newArg[key] = undefined;
+        });
+    });
+    return newArg;
+}
+function _object(saida, entrada, paramList, force) {
     if (force === void 0) { force = true; }
     if (entrada == null || entrada == undefined) {
         return saida;
     }
+    if (saida == null || saida == undefined) {
+        return entrada;
+    }
+    paramList = keyList(saida, entrada, paramList);
     if (isFile(saida)) {
         return entrada;
     }
@@ -92,7 +129,7 @@ function _object(saida, entrada, force) {
         var newSaida = [];
         for (var id in entrada) {
             if (entrada.hasOwnProperty(id) && entrada[id]) {
-                newSaida.push(_object(saida[id], entrada[id], force));
+                newSaida.push(_object(saida[id], entrada[id], paramList, force));
             }
         }
         return newSaida;
@@ -101,13 +138,16 @@ function _object(saida, entrada, force) {
         return entrada;
     }
     else if (typeof saida === 'object' && saida !== null && typeof entrada === 'object' && entrada !== null) {
-        var newSaida = {};
-        for (var id in saida) {
-            if (saida.hasOwnProperty(id)) {
-                newSaida[id] = _object(saida[id], entrada[id], force);
-            }
-        }
-        return newSaida;
+        var newSaida_1 = {};
+        paramList.forEach(function (id) {
+            newSaida_1[id] = _object(saida[id], entrada[id], paramList, force);
+        });
+        // for (const id in paramList) {
+        //   if (saida.hasOwnProperty(id)) {
+        //     newSaida[id] = _object(saida[id], entrada[id], force);
+        //   }
+        // }
+        return newSaida_1;
     }
     else if (isPrimitive(saida) && (!saida || typeof entrada === typeof saida)) {
         return entrada;
@@ -144,7 +184,7 @@ function _copyIfNull(saida, entrada, force) {
 function _pathMap(entrada, saida, paths) {
     if (saida === void 0) { saida = {}; }
     if (paths === void 0) { paths = {}; }
-    var newEntrada = _object(saida, entrada, true);
+    var newEntrada = _object(saida, entrada, undefined, true);
     _copyIfNull(saida, newEntrada, true);
     _paths(saida, newEntrada, paths);
     return newEntrada;
