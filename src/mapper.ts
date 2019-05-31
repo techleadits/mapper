@@ -168,13 +168,17 @@ function _copyIfNull(saida: any, entrada: any, force: boolean = true): any {
         }
       }
     }
-  } else if (entrada && (!saida)) {
+  } else if (entrada && (saida === undefined)) {
     return entrada;
+  } else if (entrada && (saida === null)) {
+    return entrada;
+  } else if (entrada && (saida === false)) {
+    return saida
   }
 }
 
 function _pathMap(entrada: any, saida: any = {}, paths: SpecialMapping = {}) {
-
+  
   const newEntrada = _object(saida, entrada,undefined, true);
   _copyIfNull(newEntrada, saida, true);
   _paths(saida, newEntrada, paths);

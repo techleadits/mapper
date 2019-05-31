@@ -177,8 +177,14 @@ function _copyIfNull(saida, entrada, force) {
             }
         }
     }
-    else if (entrada && (!saida)) {
+    else if (entrada && (saida === undefined)) {
         return entrada;
+    }
+    else if (entrada && (saida === null)) {
+        return entrada;
+    }
+    else if (entrada && (saida === false)) {
+        return saida;
     }
 }
 function _pathMap(entrada, saida, paths) {
